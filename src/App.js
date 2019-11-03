@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import restaurantService from './Services/restaurant';
+import MenuCard from './Components/MenuCard';
+import DateSelector from './Components/DateSelector';
 
 const App = () => {
+  const [restaurants, setRestaurants] = useState([]);
+  const [date, setDate] = useState(new Date());
+  const [dummy, setDummy] = useState(false); // Changed date doesn't re-render App for some reason
+
+  useEffect(() => {
+    const getRestaurants = async () => {
+      try {
+        const restaurants = await restaurantService.getAll();
+        setRestaurants(restaurants);
+      } catch (exception) {
+          window.alert("Connection to backend failed");
+          console.log(exception);
+      }
+    }
+
+    getRestaurants();
+  }, [setRestaurants]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <DateSelector date={date} setDate={setDate} dummy={dummy} setDummy={setDummy} />
+      {restaurants.map(r => <MenuCard key={r.name} date={date} restaurant={r} dummy={dummy} />)}
     </div>
   );
 }
