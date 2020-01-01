@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import menuService from '../../Services/menu';
 import uuidv4 from 'uuid';
+import menuService from '../../Services/menu';
 import Course from '../Course';
+import './MenuCard.css';
 
 const MenuCard = ({date, restaurant, dummy}) => {
   const [menu, setMenu] = useState(null);
@@ -22,10 +23,15 @@ const MenuCard = ({date, restaurant, dummy}) => {
   }, [restaurant, date, dummy]);
 
   if (menu) {
+    const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     return (
-      <div>
-        {restaurant.name}
-        {date.toString()}
+      <div className='menuCardContainer'>
+        <div className='name'>
+          {restaurant.name}
+        </div>
+        <div className='date'>
+          {dateString}
+        </div>
         {menu.courses.map(c => <Course key={uuidv4()} course={c} />)}
       </div>
     )

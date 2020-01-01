@@ -25,10 +25,10 @@ const MainView = () => {
 
   return (
     <div className='container'>
-      <div className='dateContainer'>
+      <div className='dateSelector'>
         <DateSelector date={date} setDate={setDate} dummy={dummy} setDummy={setDummy} />
       </div>
-      <div className='menuContainer'>
+      <div className='menuCards'>
         {restaurants.map(r => <MenuCard key={r.id} date={date} restaurant={r} dummy={dummy} />)}
       </div>
     </div>
