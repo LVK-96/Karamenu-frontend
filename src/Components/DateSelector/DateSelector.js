@@ -1,4 +1,5 @@
 import React from 'react';
+import './DateSelector.css';
 
 const DateSelector = ({date, setDate, dummy, setDummy}) => {
   const increment = () => {
@@ -15,14 +16,21 @@ const DateSelector = ({date, setDate, dummy, setDummy}) => {
     setDummy(!dummy);
   }
 
+  const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
   return (
-    <div>
-      <button onClick={increment}>
-        +
-      </button>
-      <button onClick={decrement}>
-        -
-      </button>
+    <div className='dateSelectorContainer'>
+      <div className='dateButtons'>
+        <button onClick={decrement}>
+          -
+        </button>
+        <button onClick={increment}>
+          +
+        </button>
+      </div>
+      <div className='date'>
+        {dateString}
+      </div>
     </div>
   );
 };

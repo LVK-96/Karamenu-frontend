@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Card from 'react-bootstrap/Card';
 import uuidv4 from 'uuid';
 import menuService from '../../Services/menu';
 import Course from '../Course';
@@ -23,17 +24,11 @@ const MenuCard = ({date, restaurant, dummy}) => {
   }, [restaurant, date, dummy]);
 
   if (menu) {
-    const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     return (
-      <div className='menuCardContainer'>
-        <div className='name'>
-          {restaurant.name}
-        </div>
-        <div className='date'>
-          {dateString}
-        </div>
+      <Card>
+        <Card.Title>{restaurant.name}</Card.Title>
         {menu.courses.map(c => <Course key={uuidv4()} course={c} />)}
-      </div>
+      </Card>
     )
   } else {
     return <></>
