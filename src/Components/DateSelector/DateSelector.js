@@ -4,7 +4,6 @@ const DateSelector = ({date, setDate, dummy, setDummy}) => {
   const increment = () => {
     let newDate = date;
     newDate.setDate(newDate.getDate() + 1);
-    console.log(newDate);
     setDate(newDate);
     setDummy(!dummy);
   }
@@ -12,8 +11,8 @@ const DateSelector = ({date, setDate, dummy, setDummy}) => {
   const decrement = () => {
     let newDate = date;
     newDate.setDate(newDate.getDate() - 1);
-    console.log(newDate);
     setDate(newDate);
+    setDummy(!dummy);
   }
 
   return (

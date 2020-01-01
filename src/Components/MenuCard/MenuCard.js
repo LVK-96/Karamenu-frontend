@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import menuService from '../Services/menu';
+import menuService from '../../Services/menu';
 import uuidv4 from 'uuid';
-import Course from './Course';
+import Course from '../Course';
 
 const MenuCard = ({date, restaurant, dummy}) => {
   const [menu, setMenu] = useState(null);
 
   useEffect(() => {
-    console.log("useEffect called");
     const getMenu = async () => {
       try {
-        const menu = await menuService.getOne(restaurant, date);
+        // TODO: Backend should return id as string
+        const menu = await menuService.getByIdAndDate(restaurant.id.toString(), date);
         setMenu(menu);
       } catch (exception) {
         window.alert("Error getting menus");
@@ -25,7 +25,7 @@ const MenuCard = ({date, restaurant, dummy}) => {
     return (
       <div>
         {restaurant.name}
-        {menu.date}
+        {date.toString()}
         {menu.courses.map(c => <Course key={uuidv4()} course={c} />)}
       </div>
     )
