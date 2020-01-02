@@ -2,6 +2,16 @@ import React from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import './DateSelector.css';
 
+const weekdayArray = [
+  'Sunnuntai',
+  'Maanantai',
+  'Tiistai',
+  'Keskiviikko',
+  'Torstai',
+  'Perjantai',
+  'Lauantai'
+];
+
 const DateSelector = ({date, setDate, dummy, setDummy}) => {
   const increment = () => {
     let newDate = date;
@@ -22,7 +32,7 @@ const DateSelector = ({date, setDate, dummy, setDummy}) => {
   return (
     <ButtonGroup>
       <Button onClick={decrement}>{'<'}</Button>
-      <Button disabled={true}>{dateString} Keskiviikko</Button>
+      <Button className='selectedDate' disabled={true}>{weekdayArray[date.getDay()]} {dateString}</Button>
       <Button onClick={increment}>{'>'}</Button>
     </ButtonGroup>
   );
