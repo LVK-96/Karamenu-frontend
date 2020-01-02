@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
+import { ListGroup, Card } from 'react-bootstrap';
 import uuidv4 from 'uuid';
 import menuService from '../../Services/menu';
 import Course from '../Course';
@@ -25,9 +25,18 @@ const MenuCard = ({date, restaurant, dummy}) => {
 
   if (menu) {
     return (
-      <Card>
-        <Card.Title>{restaurant.name}</Card.Title>
-        {menu.courses.map(c => <Course key={uuidv4()} course={c} />)}
+      <Card className='menuCardContainer'>
+        <Card.Header as='h5'>
+          <div>
+            <Card.Link href={restaurant.url}>{restaurant.name}</Card.Link>
+          </div>
+          <div>
+            {`${restaurant.opens} - ${restaurant.closes}`}
+          </div>
+        </Card.Header>
+        <ListGroup variant='flush'>
+          {menu.courses.map(c => <Course key={uuidv4()} course={c} />)}
+        </ListGroup>
       </Card>
     )
   } else {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ButtonGroup, Button } from 'react-bootstrap';
 import './DateSelector.css';
 
 const DateSelector = ({date, setDate, dummy, setDummy}) => {
@@ -19,19 +20,11 @@ const DateSelector = ({date, setDate, dummy, setDummy}) => {
   const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
   return (
-    <div className='dateSelectorContainer'>
-      <div className='dateButtons'>
-        <button onClick={decrement}>
-          -
-        </button>
-        <button onClick={increment}>
-          +
-        </button>
-      </div>
-      <div className='date'>
-        {dateString}
-      </div>
-    </div>
+    <ButtonGroup>
+      <Button onClick={decrement}>{'<'}</Button>
+      <Button disabled={true}>{dateString} Keskiviikko</Button>
+      <Button onClick={increment}>{'>'}</Button>
+    </ButtonGroup>
   );
 };
 

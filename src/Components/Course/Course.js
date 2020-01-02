@@ -1,16 +1,16 @@
 import React from 'react';
+import { ListGroup, Card } from 'react-bootstrap';
 
 const Course = ({course}) => {
   return (
-    <div>
-      {course.category}
-      {course.name_fi}
-      {course.name_en}
-      {course.desc_fi}
-      {course.desc_en}
-      {course.tags}
-      {course.price}
-    </div>
+    <ListGroup.Item>
+      <div>
+        {`${course.name_fi} ${course.desc_fi}`}
+      </div>
+      <div>
+        {course.tags}
+      </div>
+    </ListGroup.Item>
   );
 };
 
