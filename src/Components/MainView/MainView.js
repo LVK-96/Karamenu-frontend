@@ -14,9 +14,11 @@ const MenuCards = ({ restaurants, date, dummy }) => {
     );
   } else {
       return (
+      <div className='menuCards'>
         <Spinner animation="grow" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
+      </div>
       );
   }
 }
